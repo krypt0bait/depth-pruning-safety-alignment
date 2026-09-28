@@ -5,7 +5,7 @@ ReplaceMe depth pruning of Qwen3-8B, removing n ∈ {2, 4, 9} of its 36 layers, 
 ## Method
 
 1. **Cut selection (Eq. 4).** On the first 256 SlimOrca calibration samples, choose the block i* that minimises the angular distance between the hidden states L_i and L_{i+n} at the last token. Blocks i*+1 … i*+n are removed.
-2. **Linear transform (Eq. 6).** On all 1000 calibration samples, fit T by least squares so that block i*'s MLP output M, mapped to M·T, reproduces L_{i+n}.
+2. **Linear transform (Eq. 6).** On 1000 calibration samples, fit T by least squares so that block i*'s MLP output M, mapped to M·T, reproduces L_{i+n}.
 3. **Fusion.** Fold T into block i*'s `down_proj` (W ← TᵀW) and delete the n blocks. No training is involved.
 
 ## Evaluation
